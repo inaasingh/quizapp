@@ -95,6 +95,10 @@
       color: #fab1a0;
       font-weight: bold;
     }
+
+    .hide {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -102,8 +106,7 @@
 
   <div class="rule-book">
     <section class="section-img-box">
-      <img class="section-img" src="rules.svg" alt="Rules Illustration" />
-
+      <img class="section-img" src="hero.png" alt="Rules Illustration" />
     </section>
     <section class="section-rule-box">
       <div class="rules">
@@ -116,9 +119,7 @@
           <li class="rule-point">Don't plagiarize. Try to answer on your own.</li>
           <li class="rule-point">You can take the quiz multiple times.</li>
         </ul>
-        <button class="play-btn cursor">
-          Let the game begin 🔥🔥
-        </button>
+        <button class="play-btn cursor">Let the game begin 🔥🔥</button>
       </div>
     </section>
   </div>
@@ -133,16 +134,14 @@
       <span class="timer">⏱️ Time Left: 00:30</span>
     </div>
     <div class="questions-container"></div>
-    <div class="options-contianer d-flex direction-column gap"></div>
+    <div class="options-container d-flex direction-column gap"></div>
     <div class="cta-btns d-flex justify-center gap">
       <button class="cta quit">Quit</button>
       <button class="cta next">Next</button>
     </div>
   </div>
 
-  <div class="result hide">
-    Your Score: 9990
-  </div>
+  <div class="result hide">Your Score: 9990</div>
 
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="index.js"></script>

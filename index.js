@@ -1,5 +1,5 @@
 const questionParent = document.querySelector(".questions-container");
-const optionsParent = document.querySelector(".options-container"); // fixed typo
+const optionsParent = document.querySelector(".options-container");
 const nextBtn = document.querySelector(".next");
 const quitBtn = document.querySelector(".quit");
 const quizCategory = document.querySelector(".quiz-category");
@@ -9,13 +9,35 @@ const quizBook = document.querySelector(".quiz");
 const playBtn = document.querySelector(".play-btn");
 const qnsCount = document.querySelector(".qns-count");
 const result = document.querySelector(".result");
+const timerDisplay = document.querySelector(".timer");
 
 let quizzes = [];
 let currentQuestion = 0;
 let score = 0;
 let optionSelected = false;
+let timeLeft = 30;
+let timerInterval;
 
-// 1️⃣ Show loading indicator while fetching
+// ⏱ Start the countdown timer
+function startTimer() {
+  clearInterval(timerInterval); // Clear any previous timer
+  timeLeft = 30;
+  timerDisplay.innerText = `⏱️ Time Left: ${timeLeft}s`;
+
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    timerDisplay.innerText = `⏱️ Time Left: ${timeLeft}s`;
+
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      disableOptions();
+      optionSelected = true;
+      nextBtn.click(); // Auto-move to next question
+    }
+  }, 1000);
+}
+
+// 🔄 Fetch quiz data from API
 const getJson = async () => {
   try {
     questionParent.innerHTML = "Loading quiz...";
@@ -31,7 +53,7 @@ const getJson = async () => {
   }
 };
 
-// 2️⃣ Fetch quiz and start app
+// 🔄 Load and start the quiz
 const getData = async () => {
   quizzes = await getJson();
   if (quizzes && quizzes.length) {
@@ -41,13 +63,14 @@ const getData = async () => {
 
 getData();
 
-// 3️⃣ Start the quiz
+// ▶️ Start button click
 playBtn.addEventListener("click", () => {
+  console.log("Play button clicked");
   quizBook.classList.remove("hide");
   rules.classList.add("hide");
 });
 
-// 4️⃣ Generate question & options
+// 🧠 Create questions and options
 function createQuestionAndOptions(quizzes, currentQuestion) {
   qnsCount.innerText = `Q${currentQuestion + 1}/${quizzes.length}`;
   scoreContainer.innerText = `Score: ${score}`;
@@ -73,9 +96,11 @@ function createQuestionAndOptions(quizzes, currentQuestion) {
     optionBtn.innerText = option;
     optionsParent.appendChild(optionBtn);
   });
+
+  startTimer(); // ⏱ Start timer for this question
 }
 
-// 5️⃣ Next button logic
+// ➡️ Next button click
 nextBtn.addEventListener("click", () => {
   if (!optionSelected) {
     alert("Please select an option first!");
@@ -90,17 +115,19 @@ nextBtn.addEventListener("click", () => {
       nextBtn.innerText = "Submit";
     }
   } else {
+    clearInterval(timerInterval); // Stop timer
     quizBook.classList.add("hide");
     result.classList.remove("hide");
     result.innerText = `🎉 Your Score: ${score} / ${quizzes.length}`;
   }
 });
 
-// 6️⃣ Quit button resets everything
+// ⏹ Quit button click
 quitBtn.addEventListener("click", () => {
   currentQuestion = 0;
   score = 0;
   optionSelected = false;
+  clearInterval(timerInterval);
   rules.classList.remove("hide");
   quizBook.classList.add("hide");
   result.classList.add("hide");
@@ -108,19 +135,20 @@ quitBtn.addEventListener("click", () => {
   getData();
 });
 
-// 7️⃣ Disable options after answer
+// 🚫 Disable option buttons
 function disableOptions() {
   document
     .querySelectorAll(".button")
     .forEach((button) => button.setAttribute("disabled", true));
 }
 
-// 8️⃣ Handle option click
+// ✅ Option button click
 optionsParent.addEventListener("click", (e) => {
   if (e.target.tagName !== "BUTTON") return;
-
   if (optionSelected) return;
+
   optionSelected = true;
+  clearInterval(timerInterval); // Stop timer on selection
 
   const selected = e.target;
   const correct = quizzes[currentQuestion].correct_answer;
@@ -132,7 +160,7 @@ optionsParent.addEventListener("click", (e) => {
     selected.classList.add("error");
     document
       .querySelector(`[name="${correct}"]`)
-      ?.classList.add("success"); // Highlight correct
+      ?.classList.add("success");
   }
 
   disableOptions();
