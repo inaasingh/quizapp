@@ -1,0 +1,181 @@
+@import url("https://uilight.netlify.app/main.css");
+
+/* 🌌 Dark background for entire app */
+body {
+  background: linear-gradient(to right, #1e293b, #0f172a);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  color: #facc15;
+  text-align: center;
+  padding-top: 2rem;
+  font-size: 2.5rem;
+}
+
+.grid-container-two-col {
+  width: 90vw;
+  height: auto;
+  margin: 3rem auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+  color: #f8fafc;
+}
+
+/* 🖼️ Image styling */
+.section-img-box {
+  justify-self: center;
+  align-self: center;
+  width: 100%;
+  max-width: 350px;
+}
+
+.section-img {
+  width: 100%;
+  height: auto;
+}
+
+/* 📖 Rule Section */
+.section-rule-box,
+.rules,
+.rule-title {
+  color: #f8fafc;
+}
+
+.rule-title {
+  text-decoration: underline;
+  font-size: 1.8rem;
+}
+
+.rules-list {
+  margin: 2rem 0;
+}
+
+.rule-point {
+  padding: 0.75rem 0.5rem;
+  border-left: 3px solid #38bdf8;
+  margin-bottom: 0.5rem;
+}
+
+/* 🔘 Gradient Play Button */
+.play-btn {
+  background: linear-gradient(to right, #3b82f6, #06b6d4);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.3rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.play-btn:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+/* 🧠 Quiz section */
+.quiz {
+  background: #1e293b;
+  color: #f1f5f9;
+  padding: 2rem;
+  width: 90%;
+  max-width: 600px;
+  margin: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+/* ✅ Result */
+.result {
+  font-size: 2.5rem;
+  color: #22c55e;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+/* 🧩 Misc Info */
+.quiz-category {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #38bdf8;
+}
+
+.qns-count,
+.cur-score {
+  font-size: 1.1rem;
+  color: #e0f2fe;
+}
+
+/* ❓ Question Styling */
+.questions-container {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+/* ✨ Option Buttons */
+.options-container .button {
+  background: #334155;
+  color: #f8fafc;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 12px;
+  margin-bottom: 0.75rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.options-container .button:hover {
+  background: #475569;
+}
+
+.options-container .button.success {
+  background-color: #16a34a;
+  color: #ffffff;
+}
+
+.options-container .button.error {
+  background-color: #dc2626;
+  color: #ffffff;
+}
+
+/* CTA Buttons */
+.cta {
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  padding: 10px 1.5rem;
+  border-radius: 6px;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.quit {
+  background-color: #e2e8f0;
+  color: #1e293b;
+}
+
+.next {
+  background: linear-gradient(to right, #0ea5e9, #3b82f6);
+  color: white;
+}
+
+/* Utility */
+.justify-center {
+  justify-content: center;
+}
+
+.justify-space-between {
+  justify-content: space-between;
+}
+
+.hide {
+  display: none;
+}
