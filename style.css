@@ -36,7 +36,10 @@ h1 {
 .section-img {
   width: 100%;
   height: auto;
+  max-width: 500px;
+  display: block;
 }
+
 
 /* 📖 Rule Section */
 .section-rule-box,
