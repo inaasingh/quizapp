@@ -1,0 +1,12 @@
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Node-related (if used later)
+node_modules/
+
+# VSCode settings
+.vscode/
+
+# Logs
+*.log
